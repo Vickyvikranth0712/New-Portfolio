@@ -1,4 +1,78 @@
 // ==========================================
+// Dynamic Favicon Generator
+// ==========================================
+function generateLuxuryMinimalFavicon() {
+    // Create canvas
+    const canvas = document.createElement('canvas');
+    canvas.width = 256;
+    canvas.height = 256;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width;
+    const h = canvas.height;
+    
+    const BLACK = '#000000';
+    const AMBER = '#ffbf00';
+    const AMBER_LIGHT = '#ffd700';
+    const AMBER_DARK = '#ff9500';
+    
+    // Black background with subtle gradient
+    const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+    bgGrad.addColorStop(0, '#000000');
+    bgGrad.addColorStop(1, '#1a1a1a');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, w, h);
+    
+    // Subtle amber circle accent
+    const gradient = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, 100);
+    gradient.addColorStop(0, AMBER + '15');
+    gradient.addColorStop(1, 'transparent');
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(w/2, h/2, 100, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Elegant amber ring
+    ctx.strokeStyle = AMBER;
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.arc(w/2, h/2, 95, 0, Math.PI * 2);
+    ctx.stroke();
+    
+    // Inner accent ring
+    ctx.strokeStyle = AMBER_LIGHT;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(w/2, h/2, 88, 0, Math.PI * 2);
+    ctx.stroke();
+    
+    // Letter V with gradient
+    const textGrad = ctx.createLinearGradient(w/2 - 60, h/2 - 60, w/2 + 60, h/2 + 60);
+    textGrad.addColorStop(0, AMBER_LIGHT);
+    textGrad.addColorStop(0.5, AMBER);
+    textGrad.addColorStop(1, AMBER_DARK);
+    ctx.fillStyle = textGrad;
+    ctx.font = 'bold 140px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('V', w/2, h/2 + 8);
+    
+    // Convert to data URL and set as favicon
+    const faviconUrl = canvas.toDataURL('image/png');
+    
+    // Set favicon
+    const faviconLink = document.getElementById('dynamic-favicon');
+    if (faviconLink) {
+        faviconLink.href = faviconUrl;
+    }
+    
+    // Set apple touch icon
+    const appleTouchIcon = document.getElementById('apple-touch-icon');
+    if (appleTouchIcon) {
+        appleTouchIcon.href = faviconUrl;
+    }
+}
+
+// ==========================================
 // Global Variables
 // ==========================================
 let currentCertificate = 0;
@@ -580,6 +654,9 @@ function setupVideoAutoplay() {
 // Initialize All Functions
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    // Generate dynamic favicon
+    generateLuxuryMinimalFavicon();
+    
     // Create preloader
     createPreloader();
     

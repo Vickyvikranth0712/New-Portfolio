@@ -747,9 +747,9 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: 24px;
-    height: 24px;
-    background: var(--bg-primary);
+    width: 80px;
+    height: 80px;
+    background: var(--bg-card);
     border: 4px solid var(--accent-gold);
     border-radius: 50%;
     z-index: 10;
@@ -760,12 +760,15 @@ body {
     animation: pulse 2s infinite;
 }
 
+.timeline-year {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent-gold);
+    font-family: 'Montserrat', sans-serif;
+}
+
 .dot-inner {
-    width: 10px;
-    height: 10px;
-    background: var(--accent-gold);
-    border-radius: 50%;
-    animation: pulse-inner 2s infinite;
+    display: none;
 }
 
 @keyframes pulse-inner {
@@ -1229,13 +1232,46 @@ body {
         font-size: 2rem;
     }
 
+    /* Project Items Mobile */
+    .project-item {
+        flex-direction: column !important;
+        gap: 1.5rem;
+    }
+
+    .project-video,
+    .project-image {
+        width: 100%;
+        height: 500px;
+    }
+
+    .project-video video {
+        object-fit: contain;
+        background: var(--bg-secondary);
+        width: 100%;
+        height: 100%;
+    }
+
+    .project-details {
+        width: 100%;
+    }
+
+    .project-reverse {
+        flex-direction: column !important;
+    }
+
     /* Vertical Timeline Mobile */
     .timeline-line {
-        left: 30px;
+        left: 40px;
     }
 
     .timeline-dot {
-        left: 30px;
+        left: 40px;
+        width: 70px;
+        height: 70px;
+    }
+
+    .timeline-year {
+        font-size: 1.1rem;
     }
 
     .timeline-entry,
@@ -1246,8 +1282,8 @@ body {
     .timeline-content,
     .timeline-entry:nth-child(odd) .timeline-content,
     .timeline-entry:nth-child(even) .timeline-content {
-        width: calc(100% - 70px);
-        margin-left: 70px;
+        width: calc(100% - 90px);
+        margin-left: 90px;
         padding-left: 0;
         padding-right: 0;
     }
@@ -1308,6 +1344,20 @@ body {
 
     .skill-logo-item {
         min-width: 100%;
+    }
+
+    /* Video height for very small screens */
+    .project-video,
+    .project-image {
+        height: 450px;
+        min-height: 450px;
+        max-height: 600px;
+    }
+
+    .project-video video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
 }
 
