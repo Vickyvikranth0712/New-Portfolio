@@ -480,46 +480,6 @@ function setupResumeDownload() {
 }
 
 // ==========================================
-// Cursor Trail Effect (Minimal)
-// ==========================================
-function setupCursorEffect() {
-    const cursorDot = document.createElement('div');
-    cursorDot.style.cssText = `
-        position: fixed;
-        width: 8px;
-        height: 8px;
-        background: var(--accent-gold);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transition: transform 0.15s ease;
-        opacity: 0;
-    `;
-    document.body.appendChild(cursorDot);
-    
-    let mouseX = 0, mouseY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.opacity = '0.7';
-        cursorDot.style.left = mouseX + 'px';
-        cursorDot.style.top = mouseY + 'px';
-    });
-    
-    // Scale on hover over clickable elements
-    const clickables = document.querySelectorAll('a, button, .clickable');
-    clickables.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorDot.style.transform = 'scale(2)';
-        });
-        el.addEventListener('mouseleave', () => {
-            cursorDot.style.transform = 'scale(1)';
-        });
-    });
-}
-
-// ==========================================
 // Scroll to Top Button (Hidden initially)
 // ==========================================
 function createScrollTopButton() {
@@ -687,11 +647,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Setup resume download
     setupResumeDownload();
-    
-    // Setup cursor effect (minimal)
-    if (window.innerWidth > 768) {
-        setupCursorEffect();
-    }
     
     // Create scroll to top button
     createScrollTopButton();
